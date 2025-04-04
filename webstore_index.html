@@ -10,12 +10,12 @@
     <header>
         <img src="Images/storecraft logo.png" alt="Storecraft Logo">
         <nav class="main-nav">
-            <a href="index.html">Home</a>
-            <a href="webstore_index.html">Shop</a>
-            <a href="cart.html">Cart</a>
-            <a href="history.html">History</a>
+            <a href="index.html">HOME</a>
+            <a href="webstore_index.html">SHOP</a>
+            <a href="cart.html">CART</a>
+            <a href="history.html">HISTORY</a>
         </nav>
-        <a href="login.html"><button class="sign-in">>Sign-up/In</button></a>
+        <a href="login.html"><button class="sign-in">Login/Register</button></a>
     </header>
 
 
@@ -56,7 +56,7 @@
                 <span class="label">LIMITED TIME ONLY</span>
                 <img src="Images/Might and Mystery.png" alt="Box 3">
                 <h2>Might and Mystery Box</h2>
-                <p> </p>
+                <p>The Might and Mystery Box contains x1 Premium battlepass x3 Egg Incubator </p>
                 <p>Can only be purchased 1 time.</p>
                 <button>₱149.00</button>
             </div>
@@ -246,7 +246,7 @@
         const modalPrice = document.getElementById("modalPrice");
         const closeBtn = document.querySelector(".close");
         const addToCartButton = document.getElementById("addToCartButton");
-        const checkoutButton = document.createElement("button"); // Checkout button
+        const checkoutButton = document.createElement("button"); 
         checkoutButton.textContent = "Proceed to Checkout";
         checkoutButton.classList.add("checkout-btn");
         document.body.appendChild(checkoutButton);
@@ -284,17 +284,17 @@
         addToCartButton.addEventListener("click", () => {
             const item = {
                 name: modalTitle.textContent,
-                price: parseFloat(modalPrice.textContent.replace("₱", "")) || 0
+                price: parseFloat(modalPrice.textContent.replace("₱", "")) || 0,
+                imgSrc: modalImage.src 
             };
-
+        
             cart.push(item);
             localStorage.setItem("cart", JSON.stringify(cart));
-
+        
             alert("Item added to cart!");
             closeModal();
         });
 
-        // Checkout button logic
         checkoutButton.addEventListener("click", function () {
             if (cart.length === 0) {
                 alert("Your cart is empty!");
@@ -303,7 +303,6 @@
             window.location.href = "cart.html";
         });
 
-        // Show checkout button only if items are in the cart
         function updateCheckoutButton() {
             if (cart.length > 0) {
                 checkoutButton.style.display = "block";
